@@ -1,0 +1,96 @@
+
+<main
+  class="split-hero"
+  [style.--music-width]="musicWidth + '%'"
+  [style.--program-reveal]="programReveal + '%'"
+  [style.--music-reveal]="musicReveal + '%'"
+>
+  <!-- Fotografías a pantalla completa -->
+  <div class="photo photo-music" aria-hidden="true"></div>
+  <div class="photo photo-dev" aria-hidden="true"></div>
+
+  <!-- Degradados horizontales -->
+  <div class="photo-overlay overlay-music" aria-hidden="true"></div>
+  <div class="photo-overlay overlay-dev" aria-hidden="true"></div>
+
+  <!-- Información de programación -->
+  <section
+    class="info-panel program-info"
+    [style.opacity]="programReveal > 0 ? 1 : 0"
+    [attr.aria-hidden]="programReveal === 0"
+    [attr.inert]="programReveal === 0 ? '' : null"
+  >
+    <div
+      class="info-content"
+      [class.info-content-visible]="programReveal > 0"
+    >
+      <span class="eyebrow">PROGRAMACIÓN</span>
+      <h2>Ideas que se convierten en código.</h2>
+      <p>Desarrollo web, proyectos y tecnología.</p>
+
+      <a routerLink="/dev" class="explore-button">
+        Explorar proyectos <span>→</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Información de música -->
+  <section
+  class="info-panel music-info"
+  [attr.aria-hidden]="musicReveal === 0"
+  [attr.inert]="musicReveal === 0 ? '' : null"
+>
+    <div
+      class="info-content"
+      [class.info-content-visible]="musicReveal > 0"
+    >
+      <span class="eyebrow">MÚSICA</span>
+      <h2>Ideas que cobran vida.</h2>
+      <p>Producción, sesiones y proyectos musicales.</p>
+
+      <a routerLink="/music" class="explore-button">
+        Explorar música <span>→</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Frases principales de la izquierda -->
+  <div class="headline headline-left">
+    <div class="headline-part">
+      <span class="phrase phrase-ideas">Ideas que</span>
+      <span class="phrase phrase-codes">Códigos que</span>
+    </div>
+  </div>
+
+  <!-- Frases principales de la derecha -->
+  <div class="headline headline-right">
+    <div class="headline-part">
+      <span class="phrase phrase-build">construyen</span>
+      <span class="phrase phrase-sound">suenan</span>
+    </div>
+  </div>
+
+  <!-- Slider interactivo -->
+  <div
+    class="slider-control"
+    [style.left.%]="musicWidth"
+  >
+    <div class="slider-line"></div>
+
+    <button
+      type="button"
+      class="slider-handle"
+      (pointerdown)="startDragging($event)"
+      (keydown.arrowleft)="moveSlider(-2)"
+      (keydown.arrowright)="moveSlider(2)"
+      aria-label="Mover divisor entre música y programación"
+      [attr.aria-valuenow]="musicWidth"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      role="slider"
+    >
+      <span>‹</span>
+      <span>›</span>
+    </button>
+  </div>
+</main>
